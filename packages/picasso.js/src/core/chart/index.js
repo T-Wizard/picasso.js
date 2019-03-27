@@ -603,6 +603,7 @@ function chartFn(definition, context) {
   /**
    * Get all nodes matching the provided selector
    * @param {string} selector CSS selector [type, attribute, universal, class]
+   * @param {string} key Which component to get shapes from. Default gives shapes from all components.
    * @returns {Array<SceneNode>} Array of objects containing matching nodes
    *
    * @example
@@ -610,9 +611,9 @@ function chartFn(definition, context) {
    * chart.findShapes('Circle[fill="red"][stroke!="black"]') // [CircleNode, CircleNode]
    * chart.findShapes('Container Rect') // [Rect, Rect]
    */
-  instance.findShapes = (selector) => {
+  instance.findShapes = (selector, key) => {
     const shapes = [];
-    visibleComponents.forEach((c) => {
+    visibleComponents.filter(comp => key === undefined || key === null || comp.key === key).forEach((c) => {
       shapes.push(...c.instance.findShapes(selector));
     });
     return shapes;

@@ -21,10 +21,9 @@ describe('component - label', () => {
       chart.component.withArgs('bars').returns({});
       chart.findShapes.withArgs('circle').returns([
         { key: 'bars' },
-        { key: 'points' },
         { key: 'bars' }
       ]);
-      let labels = strategy({
+      strategy({
         chart,
         source: {
           component: 'bars',
@@ -33,10 +32,7 @@ describe('component - label', () => {
         },
         rect: {}
       }, opts => opts.nodes);
-      expect(labels).to.eql([
-        { key: 'bars' },
-        { key: 'bars' }
-      ]);
+      expect(chart.findShapes).to.be.calledWith('circle', 'bars');
     });
   });
 });

@@ -16,7 +16,7 @@ const debugColliderDef = {
     }
   },
   draw() {
-    const shapes = this.chart.findShapes(this.props.selector).filter(s => s.key === this.props.target); // Find all shapes
+    const shapes = this.chart.findShapes(this.props.selector, this.props.target); // Find all shapes
     const colliders = shapes.filter(s => s.collider).map(s => s.collider);
 
     colliders.forEach((c) => {
